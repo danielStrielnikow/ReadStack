@@ -15,10 +15,6 @@
             <a href="#" class="discovery-link downvote">
                 <i class="fas fa-arrow-alt-circle-down discovery-downvote"></i>
             </a>
-            <a href="#" class="discovery-link discovery-like">
-                <i class="far fa-star"></i>
-                Dodaj do ulubionych
-            </a>
         </section>
     </article>
 </c:forEach>

@@ -1,5 +1,4 @@
-package pl.javastart.readstack.client.signup;
-
+package pl.danielstrielnikow.client.signup;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
