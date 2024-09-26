@@ -14,11 +14,10 @@ import java.util.List;
 public class DiscoveryDao extends BaseDao {
 
 
-
     public List<Discovery> findAll() {
         final String query = """
                 SELECT
-                    id, title, url, description, date_added, category_id
+                    id, title, url, description, date_added, category_id, user_id
                 FROM
                     discovery d
                 """;
@@ -35,10 +34,11 @@ public class DiscoveryDao extends BaseDao {
             throw new RuntimeException(e);
         }
     }
+
     public List<Discovery> findByCategory(int categoryId) {
         final String query = """
                 SELECT
-                    id, title, url, description, date_added, category_id
+                    id, title, url, description, date_added, category_id, user_id
                 FROM
                     discovery
                 WHERE
@@ -59,6 +59,32 @@ public class DiscoveryDao extends BaseDao {
         }
     }
 
+    public void save(Discovery discovery) {
+        final String query = """
+                INSERT INTO
+                    discovery (title, url, description, date_added, category_id, user_id)
+                VALUES
+                    (?, ?, ?, ?, ?, ?)
+                """;
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, discovery.getTitle());
+            statement.setString(2, discovery.getUrl());
+            statement.setString(3, discovery.getDescription());
+            statement.setObject(4, discovery.getDateAdded());
+            statement.setInt(5, discovery.getCategoryId());
+            statement.setInt(6, discovery.getUserId());
+            statement.executeUpdate();
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                discovery.setId(generatedKeys.getInt(1));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     private static Discovery mapRow(ResultSet set) throws SQLException {
         int discoveryId = set.getInt("id");
         String title = set.getString("title");
@@ -66,6 +92,7 @@ public class DiscoveryDao extends BaseDao {
         String description = set.getString("description");
         LocalDateTime dateAdded = set.getTimestamp("date_added").toLocalDateTime();
         int categoryId = set.getInt("category_id");
-        return new Discovery(discoveryId, title, url, description, dateAdded, categoryId);
+        int userId = set.getInt("user_id");
+        return new Discovery(discoveryId, title, url, description, dateAdded, categoryId, userId);
     }
 }

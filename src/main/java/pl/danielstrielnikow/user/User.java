@@ -17,6 +17,18 @@ public class User {
         this.registrationDate = registrationDate;
     }
 
+    public User(Integer id,
+                String username,
+                String email,
+                String password,
+                LocalDateTime registrationDate) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.registrationDate = registrationDate;
+    }
+
     public Integer getId() {
         return id;
     }
