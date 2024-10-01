@@ -42,7 +42,9 @@ public class DiscoveryService {
                     d.getDescription(),
                     d.getDateAdded(),
                     voteDao.countByDiscoveryId(d.getId()),
-                    userDao.findById(d.getUserId()).orElseThrow().getUsername()
+                    userDao.findById(d.getUserId())
+                            .map(user -> user.getUsername())
+                            .orElse("Nieznany")
             );
         }
 
@@ -54,8 +56,9 @@ public class DiscoveryService {
                     LocalDateTime.now(),
                     ds.getCategoryId(),
                     userDao.findByUsername(ds.getAuthor())
-                            .orElseThrow()
-                            .getId()
+                            .map(user -> user.getId())
+                            .orElseThrow(() -> new IllegalArgumentException("User not found: " + ds.getAuthor()))
+
             );
         }
     }
