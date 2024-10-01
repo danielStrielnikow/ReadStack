@@ -3,6 +3,7 @@ package pl.danielstrielnikow.domain.api;
 import pl.danielstrielnikow.domain.discovery.Discovery;
 import pl.danielstrielnikow.domain.discovery.DiscoveryDao;
 import pl.danielstrielnikow.user.UserDao;
+import pl.danielstrielnikow.vote.VoteDao;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,6 +32,7 @@ public class DiscoveryService {
 
     private static class DiscoveryMapper {
         private final UserDao userDao = new UserDao();
+        private final VoteDao voteDao = new VoteDao();
 
         DiscoveryBasicInfo map(Discovery d) {
             return new DiscoveryBasicInfo(
@@ -38,7 +40,8 @@ public class DiscoveryService {
                     d.getTitle(),
                     d.getUrl(),
                     d.getDescription(),
-                    d.getDateAdded()
+                    d.getDateAdded(),
+                    voteDao.countByDiscoveryId(d.getId()) //dodanie
             );
         }
 
