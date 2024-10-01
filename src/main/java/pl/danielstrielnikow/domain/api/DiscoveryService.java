@@ -41,7 +41,8 @@ public class DiscoveryService {
                     d.getUrl(),
                     d.getDescription(),
                     d.getDateAdded(),
-                    voteDao.countByDiscoveryId(d.getId()) //dodanie
+                    voteDao.countByDiscoveryId(d.getId()),
+                    userDao.findById(d.getUserId()).orElseThrow().getUsername()
             );
         }
 
