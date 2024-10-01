@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>ReadStack</title>
     <%@ include file="../segments/stylesheets.jspf" %>
+
 </head>
 <body>
 <div class="container">
@@ -22,7 +23,9 @@
     <main>
         <%@ include file="../segments/discovery-list.jspf" %>
     </main>
+
     <%@ include file="../segments/footer.jspf" %>
 </div>
+
 </body>
 </html>

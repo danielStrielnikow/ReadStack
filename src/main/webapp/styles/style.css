@@ -1,3 +1,14 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+/* max szerokość kolumny 1200px i wyśrodkowanie */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 /* pozbywamy się podkreśleń linków */
 a {
     text-decoration: none;
@@ -34,10 +45,7 @@ a {
 .login-button:hover {
     opacity: 80%;
 }
-body {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-}
+
 /* usuwamy domyślne style przeglądarki i dodajemy flexboxa,
 kafelki mają zajmować tyle samo miejsca */
 .categories > ul {
@@ -46,6 +54,7 @@ kafelki mają zajmować tyle samo miejsca */
     padding: 0;
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 /* kafelki mają wypełniać całą przestrzeń i być lekko przezroczyste */
@@ -74,6 +83,7 @@ kafelki mają zajmować tyle samo miejsca */
 .categories > ul > li {
     background-color: #5856D6;
 }
+
 /* kolor kafelków */
 .categories > ul > li:nth-child(3n) {
     background-color: #FF2D55;
@@ -86,14 +96,7 @@ kafelki mają zajmować tyle samo miejsca */
 .categories > ul > li:nth-child(3n+2) {
     background-color: #FF9500;
 }
-.categories > ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap; /* dodane zawikanie */
-}
+
 /* ramka i odstępy */
 .discovery {
     border: 1px solid #BDBDBD;
@@ -117,6 +120,7 @@ kafelki mają zajmować tyle samo miejsca */
     color: #007AFF;
     word-wrap: break-word;
 }
+
 /* wyrównanie i większa czcionka */
 .discovery-bar {
     display: flex;
@@ -144,8 +148,24 @@ kafelki mają zajmować tyle samo miejsca */
 .downvote:hover {
     color: #FF3B30;
 }
-/* max szerokość kolumny 1200px i wyśrodkowanie */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+
+footer {
+    margin-top: 20px;
+    text-align: center;
 }
+
+.discovery-add-button {
+    position:fixed;
+    width:50px;
+    height:50px;
+    bottom:40px;
+    right:40px;
+    background-color:#4CD964;
+    color:#FFF;
+    box-shadow: 2px 2px 3px #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
