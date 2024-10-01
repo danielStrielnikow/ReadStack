@@ -34,6 +34,7 @@ public class DiscoveryService {
 
         DiscoveryBasicInfo map(Discovery d) {
             return new DiscoveryBasicInfo(
+                    d.getId(),
                     d.getTitle(),
                     d.getUrl(),
                     d.getDescription(),
